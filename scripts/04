@@ -1,0 +1,22 @@
+#! /bin/sh
+
+#Get current md5sum of file
+#Create first use
+CRONTABSUM="/var/log/crontabsum.log"
+if ! [ -f $CRONTABSUM ];then
+	md5sum /etc/crontab >> $CRONTABSUM
+fi
+
+CURRENTSUM=`cat /var/log/crontabsum.log | awk '{print $1}' | head -1`
+NEWSUM=`md5sum /etc/crontab | awk '{print $1}'`
+
+#Compare crontabsum.log with a call at md5sum on /etc/crontab
+#If not the same value, send mail to the root
+if [ $CURRENTSUM != $NEWSUM ];then
+	md5sum /etc/crontab > /var/log/crontabsum.log
+	mail -s "CRONTABSUM[dot]LOG" root@localhost.com <<< "Crontab has been changed \n"
+fi
+
+#Execute this task everyday at midnight
+#sudo /etc/init.d/cron start
+#00 00 * * * root sh ./crontabsum.sh
