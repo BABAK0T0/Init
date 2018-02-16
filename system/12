@@ -1,11 +1,1 @@
-df -h /var/backups
-df -h /var/cache
-df -h /var/lib
-df -h /var/local
-df -h /var/lock
-df -h /var/log
-df -h /var/mail
-df -h /var/opt
-df -h /var/run
-df -h /var/spool
-df -h /var/tmp
+sudo du -sh /var/*

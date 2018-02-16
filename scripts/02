@@ -1,0 +1,6 @@
+#Create a script which updates and upgrades packages
+echo "apt-get update && apt-get upgrade >> /var/log/update_script.log" >> scheduled_update.sh
+
+#Create a task which runs scheduled_update.sh a day per weeks at 4 am
+sudo /etc/init.d/cron start
+00 04 * * 1 root sh ./scheduled_update.sh
