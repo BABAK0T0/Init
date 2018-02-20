@@ -19,4 +19,4 @@ fi
 
 #Execute this task everyday at midnight
 #sudo /etc/init.d/cron start
-#00 00 * * * root sh ./crontabsum.sh
+#00 00 * * * root sh ./THIS_PATH_SCRIPT.sh

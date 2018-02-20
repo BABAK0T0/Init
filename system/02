@@ -1,1 +1,1 @@
-sysctl kernel.hostname=NEW_HOSTNAME
+sudo hostname NEW_HOSTNAME
